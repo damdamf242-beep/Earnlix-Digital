@@ -1,21 +1,507 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EARNLIX DIGITAL</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #0a0f1e;
-            color: #ffffff;
-            text-align: center;
-            padding: 50px;
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EARNLIX DIGITAL — Communauté Digitale Moderne</title>
+<meta name="description" content="Apprenez, évoluez et générez des revenus en ligne avec EARNLIX DIGITAL.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0a0f1e;
+    --navy2: #0d1526;
+    --blue: #0070f3;
+    --blue2: #1a85ff;
+    --gold: #f5a623;
+    --gold2: #ffbe4f;
+    --white: #ffffff;
+    --gray: #8b949e;
+    --gray2: #6e7681;
+    --light: #f0f6ff;
+    --border: rgba(255,255,255,0.08);
+    --card: rgba(255,255,255,0.04);
+  }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', Arial, sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── NAVBAR ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 5%;
+    background: rgba(10,15,30,0.85);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-size: 1.2rem; font-weight: 800; letter-spacing: .5px;
+    color: var(--white);
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--gray); font-size: .9rem; text-decoration: none;
+    transition: color .2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-btn {
+    background: var(--white); color: var(--navy);
+    font-weight: 700; font-size: .88rem;
+    padding: .45rem 1.2rem; border-radius: 6px; border: none;
+    cursor: pointer; text-decoration: none;
+    transition: opacity .2s;
+  }
+  .nav-btn:hover { opacity: .85; }
+  @media(max-width:768px){ .nav-links { display:none; } }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 120px 5% 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% -10%, rgba(0,112,243,0.18) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 40% at 80% 80%, rgba(245,166,35,0.07) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+    pointer-events: none;
+  }
+  .hero-inner { position: relative; max-width: 780px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: .5rem;
+    background: rgba(0,112,243,0.12);
+    border: 1px solid rgba(0,112,243,0.3);
+    color: #60a5fa;
+    padding: .35rem 1rem; border-radius: 999px;
+    font-size: .8rem; font-weight: 600; letter-spacing: 1px;
+    text-transform: uppercase; margin-bottom: 1.8rem;
+  }
+  .hero h1 {
+    font-size: clamp(3rem, 8vw, 5.8rem);
+    font-weight: 900; line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 1.4rem;
+  }
+  .hero h1 .gold { color: var(--gold); }
+  .hero-sub {
+    font-size: clamp(1rem, 2.5vw, 1.2rem);
+    color: var(--gray); max-width: 540px; margin: 0 auto 2.8rem;
+    line-height: 1.7;
+  }
+  .hero-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-gold {
+    background: var(--gold); color: #0a0f1e;
+    font-weight: 800; font-size: 1rem;
+    padding: .85rem 2.2rem; border-radius: 8px; border: none;
+    cursor: pointer; text-decoration: none;
+    transition: transform .15s, box-shadow .2s;
+    display: inline-block;
+  }
+  .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(245,166,35,.4); }
+  .btn-ghost {
+    background: transparent; color: var(--white);
+    font-weight: 600; font-size: 1rem;
+    padding: .85rem 2.2rem; border-radius: 8px;
+    border: 1px solid rgba(255,255,255,.2);
+    cursor: pointer; text-decoration: none;
+    display: inline-block;
+    transition: border-color .2s, background .2s;
+  }
+  .btn-ghost:hover { border-color: rgba(255,255,255,.5); background: rgba(255,255,255,.05); }
+
+  /* ── STATS ── */
+  .stats {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+  .stat-item {
+    padding: 2rem 1.5rem; text-align: center;
+    border-right: 1px solid var(--border);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num {
+    font-size: clamp(2rem,4vw,2.8rem);
+    font-weight: 900; color: var(--gold);
+    line-height: 1;
+  }
+  .stat-desc { font-size: .85rem; color: var(--gray); margin-top: .4rem; }
+  @media(max-width:600px){
+    .stats { grid-template-columns: repeat(2,1fr); }
+    .stat-item:nth-child(2) { border-right: none; }
+    .stat-item:nth-child(3) { border-right: 1px solid var(--border); }
+  }
+
+  /* ── SECTIONS ── */
+  .section { padding: 96px 5%; }
+  .section-inner { max-width: 1100px; margin: 0 auto; }
+  .eyebrow {
+    display: inline-block;
+    font-size: .75rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 2px;
+    color: var(--blue2); margin-bottom: .6rem;
+  }
+  .section-title {
+    font-size: clamp(1.8rem,4vw,2.6rem);
+    font-weight: 800; line-height: 1.2;
+    margin-bottom: .7rem; letter-spacing: -.5px;
+  }
+  .section-sub {
+    color: var(--gray); font-size: 1rem;
+    max-width: 500px; line-height: 1.7; margin-bottom: 3rem;
+  }
+
+  /* ── FEATURE CARDS ── */
+  .cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; }
+  .card {
+    background: var(--navy2);
+    padding: 2rem 1.6rem;
+    transition: background .2s;
+  }
+  .card:hover { background: rgba(255,255,255,.05); }
+  .card-icon { font-size: 1.8rem; margin-bottom: 1rem; }
+  .card-title { font-weight: 700; font-size: 1rem; margin-bottom: .5rem; }
+  .card-desc { font-size: .88rem; color: var(--gray); line-height: 1.65; }
+  @media(max-width:900px){ .cards { grid-template-columns: repeat(2,1fr); } }
+  @media(max-width:560px){ .cards { grid-template-columns: 1fr; } }
+
+  /* ── AFFILIATION ── */
+  .affil-wrap {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; align-items: center;
+  }
+  @media(max-width:768px){ .affil-wrap { grid-template-columns: 1fr; gap: 2rem; } }
+  .affil-level {
+    display: flex; align-items: center; gap: 1rem;
+    margin-bottom: 1rem;
+  }
+  .affil-bar {
+    flex: 1;
+    background: rgba(255,255,255,.06);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem 1.4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: background .2s;
+  }
+  .affil-bar:hover { background: rgba(255,255,255,.1); }
+  .affil-dot { width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0; }
+  .affil-label { font-size: .92rem; font-weight: 600; }
+  .affil-sub { font-size: .78rem; color: var(--gray); margin-top: 1px; }
+  .affil-amount { font-size: 1.1rem; font-weight: 800; color: var(--gold); }
+  .info-box {
+    background: rgba(0,112,243,.08);
+    border: 1px solid rgba(0,112,243,.2);
+    border-radius: 14px; padding: 1.6rem;
+  }
+  .info-box-title { color: #60a5fa; font-weight: 700; font-size: .95rem; margin-bottom: .6rem; }
+  .info-box p { color: var(--gray); font-size: .9rem; line-height: 1.7; }
+
+  /* ── FORMATIONS ── */
+  .pills { display: flex; flex-wrap: wrap; gap: .6rem; }
+  .pill {
+    background: rgba(255,255,255,.05);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: .55rem 1.1rem;
+    font-size: .85rem; font-weight: 500; color: var(--white);
+    transition: background .2s, border-color .2s;
+    cursor: default;
+  }
+  .pill:hover { background: rgba(0,112,243,.15); border-color: rgba(0,112,243,.4); }
+  .bonus-bar {
+    margin-top: 2rem;
+    background: rgba(245,166,35,.07);
+    border: 1px solid rgba(245,166,35,.2);
+    border-radius: 10px; padding: 1rem 1.4rem;
+    font-size: .9rem; color: var(--gray);
+  }
+  .bonus-bar strong { color: var(--gold); }
+
+  /* ── VALUES ── */
+  .values { display: grid; grid-template-columns: repeat(5,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 16px; overflow: hidden; margin-bottom: 3rem; }
+  .val-card { background: var(--navy2); padding: 1.8rem 1.2rem; text-align: center; transition: background .2s; }
+  .val-card:hover { background: rgba(255,255,255,.05); }
+  .val-icon { font-size: 1.6rem; margin-bottom: .6rem; }
+  .val-title { font-weight: 700; font-size: .9rem; color: var(--gold); margin-bottom: .3rem; }
+  .val-desc { font-size: .8rem; color: var(--gray); line-height: 1.5; }
+  @media(max-width:900px){ .values { grid-template-columns: repeat(3,1fr); } }
+  @media(max-width:560px){ .values { grid-template-columns: repeat(2,1fr); } }
+  .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+  .mission-card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid var(--border); border-radius: 12px; padding: 1.4rem;
+  }
+  .mission-label {
+    font-size: .75rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1.5px; color: var(--gold); margin-bottom: .5rem;
+  }
+  .mission-card p { font-size: .9rem; color: var(--gray); line-height: 1.7; }
+  @media(max-width:600px){ .mission-grid { grid-template-columns: 1fr; } }
+
+  /* ── CTA FINAL ── */
+  .cta-section {
+    padding: 100px 5%;
+    background: linear-gradient(135deg, #0a1628 0%, #0d1f3c 100%);
+    border-top: 1px solid var(--border);
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-section::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 70% 60% at 50% 100%, rgba(0,112,243,.15) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .cta-section .eyebrow { color: var(--gray2); }
+  .cta-big {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 900; letter-spacing: -1px;
+    margin-bottom: .8rem; line-height: 1.1;
+  }
+  .cta-section .section-sub { margin: .8rem auto 2rem; }
+  .price-display {
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    font-weight: 900; color: var(--gold);
+    line-height: 1; margin-bottom: .4rem;
+  }
+  .price-note { font-size: .85rem; color: var(--gray); margin-bottom: 2.5rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #060a14;
+    border-top: 1px solid var(--border);
+    padding: 1.6rem 5%;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer p { font-size: .83rem; color: var(--gray2); }
+  footer span { color: var(--gold); font-weight: 700; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { color: var(--gray2); font-size: .83rem; text-decoration: none; transition: color .2s; }
+  .footer-links a:hover { color: var(--white); }
+
+  /* ── WHATSAPP ── */
+  .wa-btn {
+    position: fixed; bottom: 24px; right: 24px; z-index: 999;
+    background: #25D366;
+    color: white; font-weight: 700; font-size: .9rem;
+    padding: .75rem 1.4rem; border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 4px 20px rgba(37,211,102,.4);
+    display: flex; align-items: center; gap: .5rem;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .wa-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(37,211,102,.5); }
+
+  /* ── DIVIDER ── */
+  .divider { height: 1px; background: var(--border); margin: 0; }
+</style>
 </head>
 <body>
-    <h1>Bienvenue sur EARNLIX DIGITAL</h1>
-    <p>Votre site est en ligne avec succès !</p>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">EARNLIX <span>DIGITAL</span></div>
+  <ul class="nav-links">
+    <li><a href="#features">Fonctionnalités</a></li>
+    <li><a href="#affiliation">Affiliation</a></li>
+    <li><a href="#formations">Formations</a></li>
+    <li><a href="#apropos">À propos</a></li>
+  </ul>
+  <a href="https://wa.me/237689573177" class="nav-btn" target="_blank">Rejoindre</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner">
+    <div class="hero-badge">✦ Communauté Digitale Moderne</div>
+    <h1>EARNLIX<br><span class="gold">DIGITAL</span></h1>
+    <p class="hero-sub">Apprenez, évoluez, développez vos compétences et générez des revenus en ligne grâce à des opportunités concrètes et des outils innovants.</p>
+    <div class="hero-actions">
+      <a href="https://wa.me/237689573177" class="btn-gold" target="_blank">Commencer — 4 500 XAF</a>
+      <a href="#features" class="btn-ghost">Découvrir ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats">
+  <div class="stat-item"><div class="stat-num">4 500</div><div class="stat-desc">XAF pour s'inscrire</div></div>
+  <div class="stat-item"><div class="stat-num">+15</div><div class="stat-desc">Formations offertes</div></div>
+  <div class="stat-item"><div class="stat-num">40%</div><div class="stat-desc">Commission maximale</div></div>
+  <div class="stat-item"><div class="stat-num">3</div><div class="stat-desc">Niveaux d'affiliation</div></div>
+</div>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="section-inner">
+    <div class="eyebrow">Ce que vous obtenez</div>
+    <h2 class="section-title">Des revenus, des outils,<br>une communauté</h2>
+    <p class="section-sub">14 méthodes de gain et d'apprentissage accessibles dès votre inscription.</p>
+    <div class="cards">
+      <div class="card"><div class="card-icon">📋</div><div class="card-title">Tâches & Micro-jobs</div><div class="card-desc">Vidéos sponsorisées, tests d'apps, sondages rémunérés et missions sur les réseaux sociaux.</div></div>
+      <div class="card"><div class="card-icon">💰</div><div class="card-title">Marketing d'Affiliation</div><div class="card-desc">Construisez votre réseau sur 3 niveaux et générez des commissions récurrentes.</div></div>
+      <div class="card"><div class="card-icon">🎓</div><div class="card-title">+15 Formations Offertes</div><div class="card-desc">Crypto, dropshipping, TikTok, Shopify, Facebook Ads et bien plus dès l'inscription.</div></div>
+      <div class="card"><div class="card-icon">🤖</div><div class="card-title">IA & Outils Digitaux</div><div class="card-desc">Exploitez l'intelligence artificielle et les outils modernes pour booster votre productivité.</div></div>
+      <div class="card"><div class="card-icon">🌍</div><div class="card-title">Hub Communautaire</div><div class="card-desc">Échangez avec des membres du monde entier et développez votre réseau professionnel.</div></div>
+      <div class="card"><div class="card-icon">📈</div><div class="card-title">Tutoriels de Trading</div><div class="card-desc">Forex, cryptomonnaies et analyse des marchés financiers accessibles aux débutants.</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- AFFILIATION -->
+<section class="section" id="affiliation">
+  <div class="section-inner">
+    <div class="affil-wrap">
+      <div>
+        <div class="eyebrow">Marketing d'affiliation</div>
+        <h2 class="section-title">Gagnez<br>sur 3 niveaux</h2>
+        <p class="section-sub">Recommandez la plateforme et percevez des commissions récurrentes sur chaque membre de votre réseau.</p>
+        <div>
+          <div class="affil-level">
+            <div class="affil-dot" style="background:#0070f3"></div>
+            <div class="affil-bar">
+              <div><div class="affil-label">Niveau 1</div><div class="affil-sub">Filleul direct</div></div>
+              <div class="affil-amount">2 200 XAF</div>
+            </div>
+          </div>
+          <div class="affil-level">
+            <div class="affil-dot" style="background:#2563b0"></div>
+            <div class="affil-bar">
+              <div><div class="affil-label">Niveau 2</div><div class="affil-sub">Filleul indirect</div></div>
+              <div class="affil-amount">900 XAF</div>
+            </div>
+          </div>
+          <div class="affil-level">
+            <div class="affil-dot" style="background:#3b82f6"></div>
+            <div class="affil-bar">
+              <div><div class="affil-label">Niveau 3</div><div class="affil-sub">Filleul de filleul</div></div>
+              <div class="affil-amount">500 XAF</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="info-box">
+        <div class="info-box-title">💡 Comment ça marche ?</div>
+        <p>Partagez votre lien de parrainage. Pour chaque personne qui s'inscrit grâce à vous, vous touchez une commission directe. Ses filleuls vous rapportent aussi — même sans action supplémentaire de votre part.</p>
+        <br>
+        <p>Plus votre réseau grandit, plus vos revenus passifs augmentent automatiquement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- FORMATIONS -->
+<section class="section" id="formations">
+  <div class="section-inner">
+    <div class="eyebrow">Catalogue de formations</div>
+    <h2 class="section-title">+15 formations offertes<br>dès l'inscription</h2>
+    <p class="section-sub">Des domaines parmi les plus porteurs du numérique, accessibles immédiatement.</p>
+    <div class="pills">
+      <div class="pill">🇨🇳 Achat en Chine</div>
+      <div class="pill">🪙 Crypto & NFT</div>
+      <div class="pill">📦 Dropshipping</div>
+      <div class="pill">🛒 E-commerce</div>
+      <div class="pill">🎥 TikTok & Monétisation</div>
+      <div class="pill">💼 Produits Digitaux</div>
+      <div class="pill">📈 Trading Débutants</div>
+      <div class="pill">⏰ Productivité Personnelle</div>
+      <div class="pill">🛍 Boutique Chariow</div>
+      <div class="pill">🖥 Boutique Shopify</div>
+      <div class="pill">📢 Facebook Ads</div>
+      <div class="pill">🔎 Google Ads</div>
+    </div>
+    <div class="bonus-bar">
+      <strong>📚 Bonus inclus : </strong>Plus de 50 e-books Business & Mindset offerts à chaque membre inscrit.
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- À PROPOS -->
+<section class="section" id="apropos">
+  <div class="section-inner">
+    <div class="eyebrow">À propos</div>
+    <h2 class="section-title">Notre vision, nos valeurs</h2>
+    <p class="section-sub">EARNLIX DIGITAL est né pour démocratiser l'accès aux opportunités digitales.</p>
+    <div class="values">
+      <div class="val-card"><div class="val-icon">💡</div><div class="val-title">Innovation</div><div class="val-desc">Nous repoussons les frontières du digital.</div></div>
+      <div class="val-card"><div class="val-icon">🤝</div><div class="val-title">Intégrité</div><div class="val-desc">Transparence et honnêteté en toutes circonstances.</div></div>
+      <div class="val-card"><div class="val-icon">🚀</div><div class="val-title">Autonomisation</div><div class="val-desc">Nous vous donnons les outils pour réussir seul.</div></div>
+      <div class="val-card"><div class="val-icon">🌍</div><div class="val-title">Communauté</div><div class="val-desc">Un réseau solidaire et bienveillant.</div></div>
+      <div class="val-card"><div class="val-icon">⭐</div><div class="val-title">Excellence</div><div class="val-desc">Nous visons toujours le meilleur.</div></div>
+    </div>
+    <div class="mission-grid">
+      <div class="mission-card">
+        <div class="mission-label">Notre mission</div>
+        <p>Proposer des solutions innovantes de revenus en ligne et construire une communauté forte et solidaire.</p>
+      </div>
+      <div class="mission-card">
+        <div class="mission-label">Notre vision</div>
+        <p>Devenir la plateforme de référence du digital et de l'entrepreneuriat en Afrique francophone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="cta-section">
+  <div style="position:relative; max-width:680px; margin:0 auto;">
+    <div class="eyebrow">Prêt à commencer ?</div>
+    <h2 class="cta-big">Rejoignez EARNLIX<br><span style="color:var(--gold)">DIGITAL</span> aujourd'hui</h2>
+    <p class="section-sub" style="margin:0 auto 1.5rem">+15 formations • 900 XAF offerts • Accès immédiat à tous les outils</p>
+    <div class="price-display">4 500 <span style="font-size:1.4rem;font-weight:600;opacity:.6">XAF</span></div>
+    <p class="price-note">dont 4 100 XAF d'activation du tableau de bord</p>
+    <a href="https://wa.me/237689573177" class="btn-gold" target="_blank" style="font-size:1.1rem; padding:1rem 3rem;">
+      🔥 S'inscrire maintenant →
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 <span>EARNLIX DIGITAL</span> — Communauté Digitale Moderne. Tous droits réservés.</p>
+  <div class="footer-links">
+    <a href="https://wa.me/237689573177" target="_blank">Contact</a>
+    <a href="#features">Fonctionnalités</a>
+    <a href="#formations">Formations</a>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOTTANT -->
+<a href="https://wa.me/237689573177" class="wa-btn" target="_blank">
+  <span>💬</span> WhatsApp
+</a>
+
 </body>
 </html>
